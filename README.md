@@ -53,7 +53,7 @@ Manufacturing and ML teams need a **repeatable integration pattern** before Jets
 ```mermaid
 flowchart LR
   subgraph Edge["Edge (simulated)"]
-    A[Optical + depth] --> B[Fused RGB | depth]
+    A[Optical + depth] --> B["Fused RGB | depth"]
   end
   subgraph Brain["Inference"]
     B --> C["POST /v1/analyze"]
