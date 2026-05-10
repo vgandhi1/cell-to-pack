@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "cell-to-pack"
+version = "0.1.0"
+description = "EV Battery Cell-to-Pack Vision Orchestrator — reference edge/VLM/factory integration stack"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Cell-to-Pack Contributors" }]
+dependencies = [
+  "numpy>=1.24",
+  "opencv-python-headless>=4.8",
+  "fastapi>=0.109",
+  "uvicorn[standard]>=0.27",
+  "pydantic>=2.5",
+  "pydantic-settings>=2.1",
+  "httpx>=0.26",
+  "pymodbus>=3.6",
+  "python-multipart>=0.0.6",
+]
+
+[project.optional-dependencies]
+dev = ["pytest>=7.4", "ruff>=0.2"]
+
+[project.scripts]
+cell-to-pack = "cell_to_pack.cli:main"
+
+[tool.hatch.build.targets.wheel]
+sources = ["src"]
+
+[tool.hatch.build.targets.sdist]
+include = ["src/cell_to_pack", "tests", "scripts", "assets", "docs", "README.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+pythonpath = ["src"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
